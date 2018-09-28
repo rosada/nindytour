@@ -1,0 +1,146 @@
+@base_font_size        	: 16px;
+@base_font_size_mobile 	: 12px;
+@font_color				: #404040;
+@tosca					: #289482;
+@light-tosca			: #c2ded9;
+@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700');
+html {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+body {
+	width: 100%;
+	overflow: hidden;
+	font-size: @base_font_size*0.8;
+	font-family: 'Lato', helvetica;;
+	font-weight: 400;
+	color: @font_color;
+	line-height: normal;
+	padding-top: 3em;
+	min-height: 100vh;
+}
+header{
+	.navbar{
+		background-color: white;
+		.navbar-brand {
+			padding: 3px 0;
+			.logo {
+				background-image: url('../images/logo.png');
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: center center;
+				width: 140px;
+				height: 45px;
+			}
+		}
+		ul.navbar-nav {
+			&.navbar-right {
+				li  {
+					a {
+						&:hover, &:active, &:focus {
+							background-color: @light-tosca;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+#content{
+	min-height: 70%;
+    min-height: -webkit-calc(100vh - 88px);
+    min-height: -moz-calc(100vh - 88px);
+    min-height: calc(100vh - 88px);
+    padding-top: 13px;
+}
+.home {
+	.hero {
+		position: relative;
+		.hero-image {
+			width: 100%;
+			height: -webkit-calc(100vh - 90px);
+		    height: -moz-calc(100vh - 90px);
+		    height: calc(100vh - 90px)
+		}
+		.form {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			background-color: rgba(25,106,113,0.7);
+			padding: 1em 0;
+			label {
+				color: white;
+			}
+		}
+	}
+}
+.login, .register, .forget-password {
+	position: relative;
+	.form-outer-box {
+		width: 100%;
+		height: 82vh;
+		display: table;
+		.form-middle-box {
+			display: table-cell;
+  			vertical-align: middle;
+  			width: 30%;
+  			.form-box {
+				border: 1px solid #e7e7e7;
+				border-radius: 6px;
+				box-shadow:  2px 2px 2px grey;
+				padding: 5em 2em;
+				form {
+					.form-group {
+
+					}
+					button {
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+}
+.register {
+	.form-outer-box {
+		.form-middle-box {
+  			.form-box {
+  				padding: 3em;
+  			}
+  		}
+  	}
+}
+.btn-tosca {
+	color: white;
+	background-color: @tosca;
+	&:hover, &:focus, &:active {
+		background-color: darken(@tosca, 10%);
+		color: white;
+	}
+}
+a {
+	color: @tosca;
+	&:hover, &:focus, &:active {
+		color: darken(@tosca, 10%);
+	}
+}
+form {
+	.form-group {
+		input.error {
+			border: 1px solid red;
+		}
+		label.error {
+			color: red;
+			font-weight: normal;
+		}
+	}
+}
+footer {
+	height: 50px;
+	padding: 15px 0;
+	background-color: @tosca;
+	color: white;
+}

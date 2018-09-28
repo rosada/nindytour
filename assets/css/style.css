@@ -1,0 +1,146 @@
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lato Italic'), local('Lato-Italic'), url(https://fonts.gstatic.com/s/lato/v14/S6u8w4BMUTPHjxsAXC-v.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjx4wWw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v14/S6u9w4BMUTPHh6UVSwiPHA.ttf) format('truetype');
+}
+html {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+body {
+  width: 100%;
+  overflow: hidden;
+  font-size: 12.8px;
+  font-family: 'Lato', helvetica;
+  font-weight: 400;
+  color: #404040;
+  line-height: normal;
+  padding-top: 3em;
+  min-height: 100vh;
+}
+header .navbar {
+  background-color: white;
+}
+header .navbar .navbar-brand {
+  padding: 3px 0;
+}
+header .navbar .navbar-brand .logo {
+  background-image: url('../images/logo.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 140px;
+  height: 45px;
+}
+header .navbar ul.navbar-nav.navbar-right li a:hover,
+header .navbar ul.navbar-nav.navbar-right li a:active,
+header .navbar ul.navbar-nav.navbar-right li a:focus {
+  background-color: #c2ded9;
+}
+#content {
+  min-height: 70%;
+  min-height: -webkit-calc(12vh);
+  min-height: -moz-calc(12vh);
+  min-height: calc(100vh - 88px);
+  padding-top: 13px;
+}
+.home .hero {
+  position: relative;
+}
+.home .hero .hero-image {
+  width: 100%;
+  height: -webkit-calc(10vh);
+  height: -moz-calc(10vh);
+  height: calc(100vh - 90px);
+}
+.home .hero .form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(25, 106, 113, 0.7);
+  padding: 1em 0;
+}
+.home .hero .form label {
+  color: white;
+}
+.login,
+.register,
+.forget-password {
+  position: relative;
+}
+.login .form-outer-box,
+.register .form-outer-box,
+.forget-password .form-outer-box {
+  width: 100%;
+  height: 82vh;
+  display: table;
+}
+.login .form-outer-box .form-middle-box,
+.register .form-outer-box .form-middle-box,
+.forget-password .form-outer-box .form-middle-box {
+  display: table-cell;
+  vertical-align: middle;
+  width: 30%;
+}
+.login .form-outer-box .form-middle-box .form-box,
+.register .form-outer-box .form-middle-box .form-box,
+.forget-password .form-outer-box .form-middle-box .form-box {
+  border: 1px solid #e7e7e7;
+  border-radius: 6px;
+  box-shadow: 2px 2px 2px grey;
+  padding: 5em 2em;
+}
+.login .form-outer-box .form-middle-box .form-box form button,
+.register .form-outer-box .form-middle-box .form-box form button,
+.forget-password .form-outer-box .form-middle-box .form-box form button {
+  width: 100%;
+}
+.register .form-outer-box .form-middle-box .form-box {
+  padding: 3em;
+}
+.btn-tosca {
+  color: white;
+  background-color: #289482;
+}
+.btn-tosca:hover,
+.btn-tosca:focus,
+.btn-tosca:active {
+  background-color: #1d6c5f;
+  color: white;
+}
+a {
+  color: #289482;
+}
+a:hover,
+a:focus,
+a:active {
+  color: #1d6c5f;
+}
+form .form-group input.error {
+  border: 1px solid red;
+}
+form .form-group label.error {
+  color: red;
+  font-weight: normal;
+}
+footer {
+  height: 50px;
+  padding: 15px 0;
+  background-color: #289482;
+  color: white;
+}
