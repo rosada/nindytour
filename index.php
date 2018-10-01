@@ -1,3 +1,5 @@
+<?php include('constant.php');?>
+<?php //include('function.php');?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +10,12 @@
 	<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<!-- style FSA -->
 	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+		var urlForJs = "<?php echo BASE_URL?>";
+	</script>
 
 </head>
 <body>
-	<?php include('constant.php');?>
-	<?php include('function.php');?>
 	<header>
 		<nav class="navbar navbar-default navbar-fixed-top">
 		  <div class="container">

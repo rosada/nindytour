@@ -1,7 +1,7 @@
 <div class="form-outer-box row">
 	<div class="form-middle-box">
 		<div class="form-box">
-			<form method="post" id="form-login" action="function.php">
+			<form method="post" id="form-login" action="<?php echo BASE_URL?>/function.php">
 				<input type="hidden" class="form-control" name="action" value="login">
 				<div class="form-group">
 					<label>Username</label>

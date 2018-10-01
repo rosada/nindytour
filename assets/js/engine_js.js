@@ -3,170 +3,6 @@ var $ = jQuery;
 var global_engine = (function() {
 	'use strict';
 
-	// function add_lyric() {
-	// 	if($('.add button.add_lyric').length){
-	// 		$('.add button.add_lyric')
-	// 		.on('click', function(event){
-	// 			// event.preventDefault();
-	// 			$('#add_lyric').validate({
-	// 				rules: {
-	// 					title: {
-	// 						required: true,
-	// 					},
-	// 					singer: {
-	// 						required: true,
-	// 					},
-	// 					lyric: {
-	// 						required: true,
-	// 					}
-	// 				},
-	// 				messages: {
-	// 					title: {
-	// 						required: 'Please input song title.'
-	// 					},
-	// 					singer: {
-	// 						required: 'Please input singer.'
-	// 					},
-	// 					lyric: {
-	// 						required: 'Please type lyric.'
-	// 					}
-	// 				},
-	// 				submitHandler: function(form){
-	// 					// $('form input[type=submit]').attr('disabled', 'disabled');
-	// 					// form.submit();\
-	// 					var title  = $.trim($('.add input[name="title"]').val());
-	// 					var singer = $.trim($('.add input[name="singer"]').val());
-	// 					var lyric  = $.trim($('.add textarea[name="lyric"]').val());
-	// 					// return false;
-	// 					// var formData = new FormData($("#add_lyric")[0]);
-	// 					$.ajax({
-	// 						url: '/lirik/function.php',
-	// 						type: 'POST',
-	// 						dataType: 'json',
-	// 						data: {
-	// 							action: 'add-lyric',
-	// 							title: title,
-	// 							singer: singer,
-	// 							lyric: lyric,
-	// 						},
-	// 						beforeSend: function(){
-	// 							console.log('beforeSend');
-	// 							$('button.add_lyric').addClass('disabled');
-	// 						}
-	// 					})
-	// 					.done(function(response){
-	// 						console.log(response);
-	// 						console.log('success');
-	// 						$('button.add_lyric').removeClass('disabled');
-	// 						$('<div class="alert alert-success" role="alert">New data added</div>').insertAfter($('.add textarea[name="lyric"]'));
-	// 						delete_alert();
-	// 						reset_this_form();
-	// 					})
-	// 					.fail(function(){
-	// 						console.log('fail');return false;
-	// 					})
-	// 					.always(function(){
-	// 						console.log('always');return false;
-	// 					})
-	// 				},
-
-	// 			})
-
-	// 		})
-	// 	}
-	// }
-	// function edit_lyric() {
-	// 	if($('.edit button.edit_lyric').length){
-	// 		$('.edit button.edit_lyric')
-	// 		.on('click', function(event){
-	// 			// event.preventDefault();
-	// 			$('#edit_lyric').validate({
-	// 				rules: {
-	// 					title: {
-	// 						required: true,
-	// 					},
-	// 					singer: {
-	// 						required: true,
-	// 					},
-	// 					lyric: {
-	// 						required: true,
-	// 					}
-	// 				},
-	// 				messages: {
-	// 					title: {
-	// 						required: 'Please input song title.'
-	// 					},
-	// 					singer: {
-	// 						required: 'Please input singer.'
-	// 					},
-	// 					lyric: {
-	// 						required: 'Please type lyric.'
-	// 					}
-	// 				},
-	// 				submitHandler: function(form){
-	// 					// $('form input[type=submit]').attr('disabled', 'disabled');
-	// 					// form.submit();\
-	// 					var id  = $.trim($('.edit input[name="id"]').val());
-	// 					var title  = $.trim($('.edit input[name="title"]').val());
-	// 					var singer = $.trim($('.edit input[name="singer"]').val());
-	// 					var lyric  = $.trim($('.edit textarea[name="lyric"]').val());
-	// 					// return false;
-	// 					// var formData = new FormData($("#edit_lyric")[0]);
-	// 					$.ajax({
-	// 						url: '/lirik/function.php',
-	// 						type: 'POST',
-	// 						dataType: 'json',
-	// 						data: {
-	// 							action: 'edit-lyric',
-	// 							id: id,
-	// 							title: title,
-	// 							singer: singer,
-	// 							lyric: lyric,
-	// 						},
-	// 						beforeSend: function(){
-	// 							console.log('beforeSend');
-	// 							$('button.edit_lyric').addClass('disabled');
-	// 						}
-	// 					})
-	// 					.done(function(response){
-	// 						console.log(response);
-	// 						console.log('success');
-	// 						$('button.edit_lyric').removeClass('disabled');
-	// 						$('<div class="alert alert-success" role="alert">Lyric successfully edited</div>').insertAfter($('.edit textarea[name="lyric"]'));
-	// 						delete_alert();
-	// 						reset_this_form();
-	// 					})
-	// 					.fail(function(){
-	// 						console.log('fail');return false;
-	// 					})
-	// 					.always(function(){
-	// 						console.log('always');return false;
-	// 					})
-	// 				},
-
-	// 			})
-
-	// 		})
-	// 	}
-	// }
-
-	// function delete_alert(){
-	// 	if($('.alert').length){
-	// 		setTimeout(function(){
-	// 			$('.alert').fadeOut('slow', function() {
-	// 				$('.alert').remove();
-	// 			});
-	// 		}, 2000);
-	// 	}
-	// }
-
-	// function reset_this_form(){
-	// 	setTimeout(function(){
-	// 		$('form input').val('');
-	// 		$('form textarea').val('');
-	// 	}, 2000);
-	// }
-
 	// function initTinyMCE(){
 	// 	if($('textarea.tinymce').length){
 	// 		tinymce.init({
@@ -203,7 +39,45 @@ var global_engine = (function() {
 	// 	}
 	// }
 
+	function forget_password(){
+		$.validator.methods.email = function( value, element ) {
+			return this.optional( element ) || /[a-zA-Z0-9.]+@[a-z]+\.[a-z]+/.test( value );
+		};
+		$('#form-forget-password').validate({
+			rules: {
+				email: {
+					required: true,
+					email: true,
+					remote: urlForJs + "/check_email.php",
+				},
+			},
+			messages: {
+				email: {
+					required: 'Please input email address.',
+					email: 'Please input valid email.',
+					remote: 'Your email is not exist in our system.',
+				},
+			},
+		})
+
+		$('form#form-forget-password').on('submit', function() {
+			// alert($('#form-login').validate());
+		})
+	}
+
 	function login(){
+		$.validator.addMethod("namevalid", function( value, element ) {
+			var regex = new RegExp("^[a-zA-Z. ]+$");
+			var key = value;
+
+			if (!regex.test(key)) {
+			   return false;
+			}
+			return true;
+		}, "Please use only letter, dot and space.");
+		$.validator.methods.email = function( value, element ) {
+			return this.optional( element ) || /[a-zA-Z0-9.]+@[a-z]+\.[a-z]+/.test( value );
+		};
 		$('#form-login').validate({
 			rules: {
 				username: {
@@ -224,7 +98,7 @@ var global_engine = (function() {
 		})
 
 		$('form#form-login').on('submit', function() {
-			alert($('#form-login').validate());
+			// alert($('#form-login').validate());
 		})
 	}
 
@@ -256,6 +130,7 @@ var global_engine = (function() {
 	var global_engine = {
 		init: function() {
 			login();
+			forget_password();
 			// add_lyric();
 			// edit_lyric();
 			// initTinyMCE();
