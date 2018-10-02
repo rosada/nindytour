@@ -41,5 +41,5 @@
 			</form>
 		</div>
 	</div>
-	<img src="<?php echo BASE_URL.'/assets/images/hero.jpg'?>" class="hero-image">
+	<img src="<?php //echo BASE_URL.'/assets/images/hero.jpg'?>" class="hero-image">
 </div>

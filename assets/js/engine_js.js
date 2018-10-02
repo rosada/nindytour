@@ -48,7 +48,7 @@ var global_engine = (function() {
 				email: {
 					required: true,
 					email: true,
-					remote: urlForJs + "/check_email.php?is_exist=true",
+					remote: urlForJs + "/check_email.php?item=password&is_exist=true",
 				},
 			},
 			messages: {
@@ -97,27 +97,28 @@ var global_engine = (function() {
 		$.validator.methods.email = function( value, element ) {
 			return this.optional( element ) || /[a-zA-Z0-9.]+@[a-z]+\.[a-z]+/.test( value );
 		};
-		$.validator.addMethod("namevalid", function( value, element ) {
-			var regex = new RegExp("^[a-zA-Z' ]+$");
+		$.validator.addMethod("usernamevalid", function( value, element ) {
+			var regex = new RegExp("^[a-zA-Z0-9_.]+$");
 			var key = value;
 
 			if (!regex.test(key)) {
 			   return false;
 			}
 			return true;
-		}, "Please use only letter, single quote and space.");
+		}, "Please use only letter, number, underscore and dot.");
 		$('#form-register').validate({
 			rules: {
-				nama: {
+				username: {
 					required: true,
-					namevalid: true,
+					usernamevalid: true,
 					minlength: 8,
-					maxlength: 32, 
+					maxlength: 32,
+					remote: urlForJs + "/check_email.php?item=username&is_exist=false",
 				},
 				email: {
 					required: true,
 					email: true,
-					remote: urlForJs + "/check_email.php?is_exist=false",
+					remote: urlForJs + "/check_email.php?item=password&is_exist=false",
 				},
 				password: {
 					required: true,
@@ -130,8 +131,11 @@ var global_engine = (function() {
 				},
 			},
 			messages: {
+				username: {
+					remote: 'This username has already taken',
+				},
 				email: {
-					remote: 'Your email has already exist in our system.',
+					remote: 'This username has already taken.',
 				}
 			}
 		})

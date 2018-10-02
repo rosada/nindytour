@@ -42,19 +42,31 @@ function get_email_header(){
 	return $headers;
 }
 
-function check_get_username($username){
-	$ret_val = '';
-	$query = 'SELECT username from user where username like "'.$username.'%" order by id_user desc';
+// function check_get_username($username){
+// 	$ret_val = '';
+// 	$query = 'SELECT username from user where username like "'.$username.'%" order by id_user desc';
+// 	$result = get_data($query);
+// 	if(count($result) == 0){
+// 		$ret_val = $username;
+// 	}else{
+// 		$increment = 1;
+// 		if(preg_match('/\d$/', $result[0]['username'], $matches, PREG_OFFSET_CAPTURE)){
+// 			$ret_val = $matches[0];
+// 			$increment = (int) $matches[0] + 1;
+// 		}
+// 		$ret_val = $username.$increment;
+// 	}
+// 	return $ret_val;
+// }
+
+function check_data($username,$email){
+	$ret_val = false;
+	$query = 'SELECT username,email from user where username = "'.$username.'" OR email = "'.$password.'"';
 	$result = get_data($query);
 	if(count($result) == 0){
-		$ret_val = $username;
+		$ret_val = true;
 	}else{
-		$increment = 1;
-		if(preg_match('/\d$/', $result[0]['username'], $matches, PREG_OFFSET_CAPTURE)){
-			$ret_val = $matches[0];
-			$increment = (int) $matches[0] + 1;
-		}
-		$ret_val = $username.$increment;
+		$ret_val = false;
 	}
 	return $ret_val;
 }

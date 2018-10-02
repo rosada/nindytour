@@ -4,7 +4,7 @@
 			<form method="post" id="form-login" action="<?php echo BASE_URL?>/function.php">
 				<input type="hidden" class="form-control" name="action" value="login">
 				<div class="form-group">
-					<label>Username</label>
+					<label>Username / alamat email</label>
 					<input type="text" class="form-control" name="username">
 				</div>
 				<div class="form-group">

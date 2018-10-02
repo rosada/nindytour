@@ -4,8 +4,8 @@
 			<form method="post" id="form-register" action="<?php echo BASE_URL?>/function.php">
 				<input type="hidden" class="form-control" name="action" value="register">
 				<div class="form-group">
-					 <label>Nama lengkap</label>
-					 <input type="text" class="form-control" name="nama">
+					 <label>Username</label>
+					 <input type="text" class="form-control" name="username">
 				</div>
 				<div class="form-group">
 					 <label>Email</label>

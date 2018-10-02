@@ -62,18 +62,28 @@ include('constant.php');
 				</div>
 			<?php endif;?>
 		<?php elseif(!empty($_GET) && $_GET['dest'] == 'register'):?>
-			<div class="container register">
-				<?php include('register.php');?>
-			</div>
+			<?php if(!empty($_SESSION['login'])):?>
+				<?php header('Location: index.php');?>
+			<?php else:?>
+				<div class="container register">
+					<?php include('register.php');?>
+				</div>
+			<?php endif;?>
 		<?php elseif(!empty($_GET) && $_GET['dest'] == 'forget-password'):?>
-			<div class="container forget-password">
-				<?php include('forget-password.php');?>
-			</div>
+			<?php if(!empty($_SESSION['login'])):?>
+				<?php header('Location: index.php');?>
+			<?php else:?>
+				<div class="container forget-password">
+					<?php include('forget-password.php');?>
+				</div>
+			<?php endif;?>
 		<?php elseif(!empty($_GET) && $_GET['dest'] == 'logout'):?>
 			<?php
-			if( session_destroy() ){
-				header('Location: index.php');
-			}
+				if(!empty($_SESSION['login'])):
+					if( session_destroy() ){
+						header('Location: index.php');
+					}
+				endif;
 			?>
 		<?php endif;?>
 	</div>
