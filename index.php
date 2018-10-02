@@ -1,5 +1,7 @@
-<?php include('constant.php');?>
-<?php //include('function.php');?>
+<?php
+session_start();
+include('constant.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,9 +54,13 @@
 			</div>
 		<?php endif;?>
 		<?php if(!empty($_GET) && $_GET['dest'] == 'login'):?>
-			<div class="container login">
-				<?php include('login.php');?>
-			</div>
+			<?php if(!empty($_SESSION['login'])):?>
+				<?php header('Location: index.php');?>
+			<?php else:?>
+				<div class="container login">
+					<?php include('login.php');?>
+				</div>
+			<?php endif;?>
 		<?php elseif(!empty($_GET) && $_GET['dest'] == 'register'):?>
 			<div class="container register">
 				<?php include('register.php');?>
