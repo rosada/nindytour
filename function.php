@@ -1,20 +1,23 @@
 <?php
 session_start();
 include('connect.php');
+include('constant.php');
 include('helper.php');
 if(!empty($_POST)){
 	switch ($_POST['action']) {
 		case 'login':
+			debug('ncnjbnclwj');
 			$query_cek = 'select * from user where username="'.$_POST['username'].'" and password="'.$_POST['password'].'"';
+			debug($query_cek);
 			$data_cek = $conn->query($query_cek);
 			if($data_cek->num_rows == 1){
 				echo "data benar ada single";
 				$row = mysqli_fetch_assoc($data_cek);
-				$_SESSION["user"] = $row ["user"];
-				$_SESSION["nama_lengkap"] = $row ["level"];
-				// $_SESSION["akses"] = $row ["akses"];
+				$_SESSION["id"] = $row ["id_user"];
+				$_SESSION["username"] = $row ["username"];
+				$_SESSION["level"] = $row ["level"];
 				$_SESSION["login"] = true;
-				header ("Location: index.php");
+				// header ("Location: index.php");
 				exit();
 			}else {
 				echo "data tidak ada atau dobel";
@@ -24,7 +27,6 @@ if(!empty($_POST)){
 		case 'forget-password':
 			$query_cek = 'select * from user where email="'.$_POST['email'].'"';
 			$result = get_data($query_cek);
-			// debug(count($result));exit();
 			if(count($result) > 0){
 				$new_pwd = rand_alphanum();
 				$query_update = 'update user set password = "'.$new_pwd.'" where id_user="'.$result['id_user'].'"';
@@ -36,16 +38,41 @@ if(!empty($_POST)){
 				$headers = get_email_header();
 
 				// Send
-				if(!mail($email_to, $subject, $message, $headers)){
-				    var_dump(error_get_last()['message']);
-				}else{
+				if(mail($email_to, $subject, $message, $headers)){
 					header ("Location: index.php?dest=login");
+				}else{
+				    var_dump(error_get_last()['message']);
 				}
 
 			}else {
-				// echo "data tidak ada atau dobel";
 				header ("Location: index.php?dest=forget-password");
 				exit();
+			}
+		break;
+		case 'register':
+			$username = trim($_POST['nama']);
+			$username = str_replace("'", "", $username);
+			$username = strtolower(str_replace(" ", "", $username));
+			$username = check_get_username($username);
+			$sql = "INSERT INTO user (username, password, email, level)	VALUES ('".$username."', '".$_POST['password']."', '".$_POST['email']."', 'pemesan')";
+
+			if ($conn->query($sql) === TRUE) {
+				$email_to = $_POST['email'];
+				$subject = "Welcome message";
+				$message = "Congratulation, your register is successfull\n";
+				$message .= "Here is your credential :\n";
+				$message .= "username : ".$username;
+				$message .= "\npassword : ".$_POST['password'];
+				$headers = get_email_header();
+
+				// Send
+				if(mail($email_to, $subject, $message, $headers)){
+					header ("Location: index.php?dest=login");
+				}else{
+				    var_dump(error_get_last()['message']);
+				}
+			} else {
+				header ("Location: index.php");
 			}
 		break;
 		default:

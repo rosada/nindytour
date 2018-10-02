@@ -48,7 +48,7 @@ var global_engine = (function() {
 				email: {
 					required: true,
 					email: true,
-					remote: urlForJs + "/check_email.php",
+					remote: urlForJs + "/check_email.php?is_exist=true",
 				},
 			},
 			messages: {
@@ -66,15 +66,6 @@ var global_engine = (function() {
 	}
 
 	function login(){
-		$.validator.addMethod("namevalid", function( value, element ) {
-			var regex = new RegExp("^[a-zA-Z. ]+$");
-			var key = value;
-
-			if (!regex.test(key)) {
-			   return false;
-			}
-			return true;
-		}, "Please use only letter, dot and space.");
 		$.validator.methods.email = function( value, element ) {
 			return this.optional( element ) || /[a-zA-Z0-9.]+@[a-z]+\.[a-z]+/.test( value );
 		};
@@ -103,27 +94,49 @@ var global_engine = (function() {
 	}
 
 	function register(){
+		$.validator.methods.email = function( value, element ) {
+			return this.optional( element ) || /[a-zA-Z0-9.]+@[a-z]+\.[a-z]+/.test( value );
+		};
+		$.validator.addMethod("namevalid", function( value, element ) {
+			var regex = new RegExp("^[a-zA-Z' ]+$");
+			var key = value;
+
+			if (!regex.test(key)) {
+			   return false;
+			}
+			return true;
+		}, "Please use only letter, single quote and space.");
 		$('#form-register').validate({
 			rules: {
 				nama: {
 					required: true,
+					namevalid: true,
+					minlength: 8,
+					maxlength: 32, 
+				},
+				email: {
+					required: true,
+					email: true,
+					remote: urlForJs + "/check_email.php?is_exist=false",
 				},
 				password: {
 					required: true,
+					minlength: 8,
+					maxlength: 32,
+				},
+				repassword: {
+					required: true,
+					equalTo: "#password",
 				},
 			},
 			messages: {
-				username: {
-					required: 'Please input username.'
-				},
-				singer: {
-					required: 'Please input password.'
-				},
-			},
+				email: {
+					remote: 'Your email has already exist in our system.',
+				}
+			}
 		})
 
-		$('form#form-login').on('submit', function() {
-			alert($('#form-login').validate());
+		$('form#form-register').on('submit', function() {
 		})
 	}
 
@@ -131,9 +144,7 @@ var global_engine = (function() {
 		init: function() {
 			login();
 			forget_password();
-			// add_lyric();
-			// edit_lyric();
-			// initTinyMCE();
+			register();
 		}
 	};
 

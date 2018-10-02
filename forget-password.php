@@ -5,7 +5,7 @@
 				<input type="hidden" class="form-control" name="action" value="forget-password">
 				<div class="form-group">
 					 <label>Alamat email</label>
-					 <input class="form-control" name="email">
+					 <input class="form-control" name="email" type="email">
 				</div>
 				<div class="form-group">
 					<small>Masukkan alamat email anda</small>

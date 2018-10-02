@@ -9,7 +9,9 @@ function get_data($query){
 	    exit();
 	}else {
 		if($result->num_rows != 0){
-			$ret_val = mysqli_fetch_assoc($result);
+			while($data = mysqli_fetch_assoc($result)) {
+				array_push($ret_val, $data);
+			}
 		}
 	}
 	return $ret_val;
@@ -38,5 +40,22 @@ function get_email_header(){
 			);
 	$headers = implode("\r\n", $headers);
 	return $headers;
+}
+
+function check_get_username($username){
+	$ret_val = '';
+	$query = 'SELECT username from user where username like "'.$username.'%" order by id_user desc';
+	$result = get_data($query);
+	if(count($result) == 0){
+		$ret_val = $username;
+	}else{
+		$increment = 1;
+		if(preg_match('/\d$/', $result[0]['username'], $matches, PREG_OFFSET_CAPTURE)){
+			$ret_val = $matches[0];
+			$increment = (int) $matches[0] + 1;
+		}
+		$ret_val = $username.$increment;
+	}
+	return $ret_val;
 }
 ?>
